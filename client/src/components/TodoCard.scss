@@ -1,0 +1,97 @@
+.todo-card {
+    display: flex;
+    padding: 0 1rem;
+    align-items: center;
+    justify-content: space-between;
+    background: rgb(255, 255, 255);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 0.2rem;
+    margin: 0 0 0.5rem 0;
+
+    &:last-child {
+        margin: 0;
+    }
+
+    .todo-value {
+        max-width:  calc(100% - 2rem - 4.5rem);
+    }
+
+    .actions {
+        .btn {
+            border: 1px solid;
+            border-radius: 0.5rem;
+            height: 2rem;
+            width: 2rem;
+            margin: 0 0.5rem 0 0;
+            background: transparent;
+    
+            &.complete-btn {
+                border-color: rgb(69, 179, 69);
+    
+                &:hover {
+                    background-color: rgba(0, 255, 0, 0.3);
+                }
+
+                i {
+                    color: rgb(69, 179, 69);
+                }
+            }
+    
+            &.remove-btn {
+                border-color: rgb(182, 27, 27);
+    
+                &:hover {
+                    background-color: rgba(255, 0, 0, 0.3);
+                }
+
+                i {
+                    color: rgb(182, 27, 27);
+                }
+            }
+    
+            &:hover {
+                cursor: pointer;
+            }
+
+            &:last-child {
+                margin: 0;
+            }
+
+            i {
+                height: 1rem;
+                width: 1rem;
+            }
+        }
+    }
+
+    &.complete {
+        .todo-value {
+            text-decoration: line-through;
+        }
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .todo-card {
+        flex-direction: column;
+        align-items: flex-start;
+        text-overflow: wrap;
+
+        .todo-value {
+            display: block;
+            max-width: 100%;
+            overflow: scroll;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .actions {
+            align-self: center;
+            margin: 0 0 0.5rem 0;
+        }
+    }
+}
