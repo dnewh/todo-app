@@ -1,4 +1,5 @@
 import React from "react";
+import propTypes from 'prop-types';
 import { updateTodo } from "../api/todos";
 
 import './TodoCard.scss';
@@ -37,5 +38,15 @@ const TodoCard = ({todo, handleDeleteTodo, setTodos}) => {
         </div>
     )
 };
+
+TodoCard.propTypes = {
+    todo: propTypes.shape({
+        id: propTypes.string,
+        value: propTypes.string,
+        complete: propTypes.bool,
+    }).isRequired,
+    handleDeleteTodo: propTypes.func.isRequired,
+    setTodos: propTypes.func.isRequired,
+}
 
 export default TodoCard;
