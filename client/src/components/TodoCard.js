@@ -1,10 +1,10 @@
 import React from "react";
 import propTypes from 'prop-types';
-import { updateTodo } from "../api/todos";
+import { updateTodo, deleteTodo } from "../api/todos";
 
 import './TodoCard.scss';
 
-const TodoCard = ({todo, handleDeleteTodo, setTodos}) => {
+const TodoCard = ({todo, setTodos}) => {
     const handleToggleComplete = (id) => {
         updateTodo({
             id,
@@ -21,8 +21,16 @@ const TodoCard = ({todo, handleDeleteTodo, setTodos}) => {
                 })
             })
         })
-        
     };
+
+    const handleDeleteTodo = (todoId) => {
+        deleteTodo(todoId)
+        .then(res => {
+            const { id } = res;
+            setTodos(currTodos => currTodos.filter(item => item.id !== id))
+        })
+        .catch(err => console.error(err))
+    }
 
     return (
         <div className={`todo-card ${todo.complete ? 'complete' : ''}`}>
@@ -45,7 +53,6 @@ TodoCard.propTypes = {
         value: propTypes.string,
         complete: propTypes.bool,
     }).isRequired,
-    handleDeleteTodo: propTypes.func.isRequired,
     setTodos: propTypes.func.isRequired,
 }
 
